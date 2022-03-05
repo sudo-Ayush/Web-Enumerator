@@ -2,3 +2,5 @@ colorama
 requests
 sockets
 bs4
+asyncio
+aiohttp
