@@ -1,0 +1,5 @@
+colorama
+requests
+socket
+bs4
+json
