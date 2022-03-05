@@ -116,7 +116,7 @@ for sub in subs:
     except requests.ConnectionError:
         pass
     else:
-        print(f"{Fore.GREEN}[+] Discovered subdomain: {url}")
+        print(f"{Fore.GREEN}[+] Discovered subdomain:", url)
 
 file.close()
 print('\n')
