@@ -30,3 +30,11 @@ python3 web-enum.py
 Usage: Enter the domain name without <http> or <https>
 Example: google.com 
 ```
+
+**Things it can do:**
+
+- Server Discovery
+- Host Diagnostic
+- Fetch Whois Information
+- Enumerate Nameservers
+- Enumerate Sub-domains
