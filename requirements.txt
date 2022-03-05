@@ -2,4 +2,3 @@ colorama
 requests
 sockets
 bs4
-jsonlib
