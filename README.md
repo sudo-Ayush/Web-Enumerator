@@ -8,8 +8,6 @@ __        __     _             _____                                            
 
 # Web-Enumerator
 
-![Web-Enumerator](https://im4.ezgif.com/tmp/ezgif-4-70931248af.gif)
-
 A simple python script that can help you with initial **reconnaissance** in your pentesting process.
 
 ## Installation
