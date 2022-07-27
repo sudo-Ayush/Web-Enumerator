@@ -10,6 +10,15 @@ __        __     _             _____                                            
 
 A simple python script that can help you with initial **reconnaissance** in your pentesting process.
 
+
+**Things it can do:**
+
+- Server Discovery
+- Host Diagnostic
+- Fetch Whois Information
+- Enumerate Nameservers
+- Enumerate Sub-domains
+
 ## Installation
 ```
 git clone https://github.com/sudo-Ayush/Web-Enumerator.git
@@ -28,11 +37,3 @@ python3 web-enum.py
 Usage: Enter the domain name without <http> or <https>
 Example: google.com 
 ```
-
-**Things it can do:**
-
-- Server Discovery
-- Host Diagnostic
-- Fetch Whois Information
-- Enumerate Nameservers
-- Enumerate Sub-domains
