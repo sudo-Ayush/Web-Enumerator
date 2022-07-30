@@ -30,6 +30,7 @@ Usage: Enter the domain name without <http> or <https>
 Example: google.com 
 ```
 
+
 **Things it can do:**
 
 - Server Discovery
