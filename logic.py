@@ -9,7 +9,7 @@ import socket
 colorama.init(autoreset=True)
 
 def banner():
-    x = random.randint(0,9)
+    x = random.randint(0,8)
     
     if x == 0:
         result = pyfiglet.Figlet()
@@ -23,23 +23,19 @@ def banner():
         result = pyfiglet.Figlet(font = "3-d")
         print(Fore.GREEN + result.renderText("Web-Enum"))
         
-    elif x == 4:
-        result = pyfiglet.Figlet(font = "doh")
-        print(Fore.LIGHTBLUE_EX + result.renderText("W-E"))
-        
-    elif x == 5:
+    elif x == 3:
         result = pyfiglet.Figlet(font = "alligator")
         print(Fore.LIGHTYELLOW_EX + result.renderText("Web-E"))
         
-    elif x == 6:
+    elif x == 4:
         result = pyfiglet.Figlet(font = "bubble")
         print(Fore.LIGHTMAGENTA_EX + result.renderText("Web-Enum"))
         
-    elif x == 7:
+    elif x == 5:
         result = pyfiglet.Figlet(font = "digital")
         print(Fore.RED + result.renderText("Web-Enum"))
     
-    elif x == 8:
+    elif x == 6:
         result = pyfiglet.Figlet(font = "isometric1")
         print(Fore.RED + result.renderText("Web-E"))
         
@@ -75,5 +71,3 @@ def domain_info(domain):
         print(Fore.CYAN+d.get_text().split("\n")[61],'.........:',Fore.GREEN+d.get_text().split("\n")[62].strip())
         print(Fore.CYAN+d.get_text().split("\n")[65],'.....:',Fore.GREEN+d.get_text().split("\n")[66].strip())
         print(Fore.CYAN+d.get_text().split("\n")[69],'....:',Fore.GREEN+d.get_text().split("\n")[70].strip())
-        return
-        
