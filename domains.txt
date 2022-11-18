@@ -1,5 +1,4 @@
 www
-new
 mail
 ftp
 localhost
