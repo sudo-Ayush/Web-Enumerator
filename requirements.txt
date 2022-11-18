@@ -2,6 +2,6 @@ colorama
 requests
 sockets
 bs4
-pyfiglet
+pyfiglet==0.8.post1
 tqdm
-threading
+thread6
