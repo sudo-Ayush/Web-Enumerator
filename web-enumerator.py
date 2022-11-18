@@ -117,6 +117,6 @@ def main():
     time.sleep(10)
     done = (time.time()-start) / 60
     print(f"{Fore.LIGHTCYAN_EX}-"*50)
-    print(f'{Fore.LIGHTMAGENTA_EX}[*] Finished | Scanned in {round(done,2)- 0.17} minutes...')  
+    print(f'{Fore.LIGHTMAGENTA_EX}[*] Finished | Scanned in {round(done - 0.17,2)} minutes...')  
 if __name__ == '__main__':
     main()
