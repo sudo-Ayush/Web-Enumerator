@@ -3,13 +3,12 @@
 | |     / /__  / /_        / ____/___  __  ______ ___ 
 | | /| / / _ \/ __ \______/ __/ / __ \/ / / / __ `__ \
 | |/ |/ /  __/ /_/ /_____/ /___/ / / / /_/ / / / / / /
-|__/|__/\___/_.___/     /_____/_/ /_/\__,_/_/ /_/ /_/
+|__/|__/\___/_.___/     /_____/_/ /_/\__,_/_/ /_/ /_/     [v2.0]
 ```
 
 # Web-Enumerator
 
-A simple python script that can help you with initial **reconnaissance** in your pentesting process.
-
+A new and improved python script that can help you with initial **reconnaissance** in your pentesting process.
 
 ## Installation
 ```
