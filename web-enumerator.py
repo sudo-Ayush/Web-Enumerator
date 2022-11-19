@@ -87,22 +87,22 @@ def whois_info(domain):
     print('\n'.join(map(str, NS_data)))
     
     print(f"{Fore.YELLOW}\n[*] Enumerating Sub-domain...\n")
-    print(f"{Fore.LIGHTCYAN_EX}[+] All Discovered Sub-Domains\n")
-    print(f"{Fore.LIGHTMAGENTA_EX}[STATUS]   |     [SUB-DOMAIN]")
-    print(f"{Fore.LIGHTWHITE_EX}-"*33)
+    print(f"{Fore.LIGHTCYAN_EX}[+] All Discovered Sub-domains\n")
+    print(f"{Fore.LIGHTMAGENTA_EX}  [STATUS]  |      [SUB-DOMAIN]")
+    print(f"{Fore.LIGHTWHITE_EX}-"*36)
     
 def sub_enum(sub, domain):
     sub_url = f'https://{sub}.{domain}'
     try:
         sub_try = requests.get(sub_url)
         if sub_try.status_code >= 200 and sub_try.status_code < 300:
-            print(f"{Fore.LIGHTGREEN_EX}   {sub_try.status_code}     |  ",f"{Fore.GREEN}{sub_url}")
+            print(f"{Fore.LIGHTGREEN_EX}->  {sub_try.status_code}     |  ",f"{Fore.GREEN}{sub_url}")
             
         elif sub_try.status_code >= 300 and sub_try.status_code < 400:
-            print(f"{Fore.LIGHTCYAN_EX}   {sub_try.status_code}     |  ",f"{Fore.CYAN}{sub_url}")
+            print(f"{Fore.LIGHTCYAN_EX}->  {sub_try.status_code}     |  ",f"{Fore.CYAN}{sub_url}")
             
         elif sub_try.status_code >= 400 and sub_try.status_code < 599:
-            print(f"{Fore.LIGHTRED_EX}   {sub_try.status_code}     |  ",f"{Fore.RED}{sub_url}")
+            print(f"{Fore.LIGHTRED_EX}->  {sub_try.status_code}     |  ",f"{Fore.RED}{sub_url}")
 
     except requests.exceptions.ConnectionError:
         pass
