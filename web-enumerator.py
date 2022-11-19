@@ -26,7 +26,7 @@ if name == 'nt':
 else:
     _ = system('clear')
 
-def web_enum(domain):
+def initial_info(domain):
     if name == 'nt':
         _ = system('cls')
 
@@ -37,28 +37,30 @@ def web_enum(domain):
     print(f"{Fore.YELLOW}[*] Fetching initial info...\n")
 
     domain_info(domain)
-    print('\n')
-    
-    print(f"{Fore.YELLOW}[*] Running Host Diagnostic...\n")
-    print(f"{Fore.LIGHTGREEN_EX}[+] PING")
+    return
+
+def host_diagnostics(domain):   
+    print(f"{Fore.YELLOW}\n[*] Running Host Diagnostic...\n")
 
     if name == 'nt':
+        print(f"{Fore.LIGHTGREEN_EX}[+] PING")
         _ = system(f'ping {domain}')
-
-    else:
-        _ = system(f'ping -c 4 {domain}')
-
-    print('\n')
-    print(f"{Fore.LIGHTGREEN_EX}[+] TRACEROUTE")
-
-    if name == 'nt':
+        print(f"{Fore.LIGHTGREEN_EX}\n[+] TRACEROUTE")
         _ = system(f'tracert {domain}')
+        print(f"{Fore.LIGHTGREEN_EX}\n[+] NS_LOOKUP\n")
+        _ = system(f'nslookup {domain}')
 
     else:
+        print(f"{Fore.LIGHTGREEN_EX}[+] PING")
+        _ = system(f'ping -c 4 {domain}')
+        print(f"{Fore.LIGHTGREEN_EX}\n[+] TRACEROUTE")
         _ = system(f'traceroute {domain}')
-    print('\n')
-    
-    print(f"{Fore.YELLOW}[*] Whois info...")
+        print(f"{Fore.LIGHTGREEN_EX}\n[+] NS_LOOKUP\n")
+        _ = system(f'host {domain}')
+    return
+
+def whois_info(domain):
+    print(f"{Fore.YELLOW}[*] Whois info...\n")
     whois = f"https://who.is/whois/{domain}"
     response = requests.get(whois)
     soup = BeautifulSoup(response.text , 'html.parser')
@@ -83,17 +85,24 @@ def web_enum(domain):
         NS_data.append([ele for ele in cols if ele])
         
     print('\n'.join(map(str, NS_data)))
-    print("\n")
     
-    print(f"{Fore.YELLOW}[*] Enumerating Sub-domain...\n")
+    print(f"{Fore.YELLOW}\n[*] Enumerating Sub-domain...\n")
+    print(f"{Fore.LIGHTCYAN_EX}[+] All Discovered Sub-Domains\n")
+    print(f"{Fore.LIGHTMAGENTA_EX}[STATUS]   |     [SUB-DOMAIN]")
+    print(f"{Fore.LIGHTWHITE_EX}-"*33)
     
 def sub_enum(sub, domain):
     sub_url = f'https://{sub}.{domain}'
-    
     try:
         sub_try = requests.get(sub_url)
-        if sub_try.status_code == 200:
-            print(Fore.CYAN+'[+] Discovered sub-domain', ':', Fore.GREEN+sub_url)
+        if sub_try.status_code >= 200 and sub_try.status_code < 300:
+            print(f"{Fore.LIGHTGREEN_EX}   {sub_try.status_code}     |  ",f"{Fore.GREEN}{sub_url}")
+            
+        elif sub_try.status_code >= 300 and sub_try.status_code < 400:
+            print(f"{Fore.LIGHTCYAN_EX}   {sub_try.status_code}     |  ",f"{Fore.CYAN}{sub_url}")
+            
+        elif sub_try.status_code >= 400 and sub_try.status_code < 599:
+            print(f"{Fore.LIGHTRED_EX}   {sub_try.status_code}     |  ",f"{Fore.RED}{sub_url}")
 
     except requests.exceptions.ConnectionError:
         pass
@@ -102,9 +111,13 @@ def main():
     print(f'{Fore.LIGHTCYAN_EX}[*] Usage: Enter the domain name without <http> or <https>')
     print(f'{Fore.LIGHTCYAN_EX}[*] Example: google.com')
     print(f'{Fore.LIGHTCYAN_EX}[*] Enter the domain name :\n')
+    
     domain = input(f"{Fore.LIGHTMAGENTA_EX}-> ").lower()
+    
     start = time.time()
-    web_enum(domain)
+    initial_info(domain)
+    host_diagnostics(domain)
+    whois_info(domain)
     
     with open('domains.txt', 'r') as domains:
         domains = domains.readlines()
@@ -117,6 +130,7 @@ def main():
     time.sleep(10)
     done = (time.time()-start) / 60
     print(f"{Fore.LIGHTCYAN_EX}-"*50)
-    print(f'{Fore.LIGHTMAGENTA_EX}[*] Finished | Scanned in {round(done - 0.17,2)} minutes...')  
+    print(f'{Fore.LIGHTMAGENTA_EX}[*] Finished | Scanned in {round(done - 0.17,2)} minutes...')
+    
 if __name__ == '__main__':
     main()
